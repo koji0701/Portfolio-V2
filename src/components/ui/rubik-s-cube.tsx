@@ -247,7 +247,7 @@ function RubiksCubeModel() {
 
   const chromeMaterial = useMemo(() => ({
     color: '#dc2626', // red
-    metalness: 1.2,  // Slightly less metallic for better color definition
+    metalness: 1.4,  // Slightly less metallic for better color definition
     roughness: 0.15,  // Slightly more roughness for better light interaction
     envMapIntensity: 3 // high environment reflections
   }), []);

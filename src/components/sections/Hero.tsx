@@ -60,9 +60,9 @@ const Hero = () => {
           
           <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 font-light tracking-wide max-w-3xl mx-auto leading-relaxed font-typewriter">
             cs + math student @ {" "}
-            <a href="https://wustl.edu" target="_blank" rel="noopener noreferrer" className="text-gradient-purple underline">washu in st. louis</a>
+            <a href="https://wustl.edu" target="_blank" rel="noopener noreferrer">washu in st. louis</a>
             <br />
-            building<span className="text-gradient-red"> cool things</span>
+            building cool things
           </p>
         </div>
         

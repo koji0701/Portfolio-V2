@@ -16,19 +16,20 @@ const About = () => {
             About
           </h2>
           
-          <Card className="bg-black/50 border border-gray-800 backdrop-blur-sm hover:border-gray-700 transition-all duration-700 rounded-none">
+          <Card className="bg-black/50 border border-gray-800 backdrop-blur-sm rounded-none">
             <CardContent className="p-12 sm:p-16">
               <div className="grid lg:grid-cols-3 gap-16 items-center">
-                {/* Profile Image */}
+                {/* Profile Image with “hover” style applied always */}
                 <div className="flex justify-center lg:justify-start">
-                  <div className="relative group">
+                  <div className="relative">
                     <img
                       src="koji.jpg"
                       alt="Profile"
-                      className="w-64 h-64 object-cover border border-gray-800 group-hover:border-purple-500 transition-all duration-700 grayscale hover:grayscale-0"
+                      className="w-64 h-64 object-cover border border-gray-800 grayscale-0"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-tr from-purple-600/10 to-red-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    {/* keep the gradient overlay visible always */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-purple-600/10 to-red-600/10 opacity-100"></div>
                   </div>
                 </div>
                 

@@ -8,6 +8,9 @@ import { projects } from "@/data/projects";
 
 const Projects = () => {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
+  
+  // Only show featured projects on the home page
+  const featuredProjects = projects.filter(project => project.featured);
 
   return (
     <section id="projects" className="py-32 bg-luxurious-black relative overflow-hidden">
@@ -18,11 +21,11 @@ const Projects = () => {
         <div className="space-y-24">
           {/* Section title */}
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-center text-gradient-purple font-typewriter tracking-widest uppercase">
-            Projects
+            Featured Projects
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
+            {featuredProjects.map((project, index) => (
               <Card
                 key={project.id}
                 className="group bg-black/50 border border-gray-800 backdrop-blur-sm hover:border-gray-700 transition-all duration-700 hover:shadow-xl hover:shadow-purple-500/5 hover:-translate-y-2 rounded-none"
@@ -128,9 +131,12 @@ const Projects = () => {
             <Button
               variant="outline"
               className="border border-gray-700 text-white bg-transparent hover:bg-white hover:text-black transition-all duration-500 px-12 py-6 font-typewriter tracking-widest uppercase rounded-none"
+              asChild
             >
-              View All Projects
-              <ExternalLink size={16} className="ml-4" />
+              <Link to="/projects">
+                View All Projects ({projects.length})
+                <ArrowRight size={16} className="ml-4" />
+              </Link>
             </Button>
           </div>
         </div>
