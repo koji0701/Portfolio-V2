@@ -38,7 +38,7 @@ const Projects = () => {
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                      className="w-full h-56 object-contain transition-transform duration-700 group-hover:scale-110 bg-black"
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
@@ -73,8 +73,7 @@ const Projects = () => {
                       {project.github && (
                         <Button
                           size="sm"
-                          variant="outline"
-                          className="border-white text-white hover:bg-white hover:text-black rounded-none font-typewriter tracking-wider uppercase"
+                          className="bg-black text-white hover:bg-gray-800 rounded-none font-typewriter tracking-wider uppercase"
                           asChild
                         >
                           <a

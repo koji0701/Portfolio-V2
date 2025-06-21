@@ -39,12 +39,13 @@ const ProjectDetail = () => {
             {/* Back Button */}
             <Button
               variant="ghost"
+              size="sm"
               className="mb-8 text-gray-400 hover:text-white"
               asChild
             >
               <Link to="/">
                 <ArrowLeft size={16} className="mr-2" />
-                Back to Projects
+                Back to Home
               </Link>
             </Button>
 
@@ -97,7 +98,7 @@ const ProjectDetail = () => {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="border-gray-600 text-white hover:bg-gray-800"
+                  className="border-gray-600 text-black hover:bg-gray-800"
                   asChild
                 >
                   <a
@@ -121,7 +122,7 @@ const ProjectDetail = () => {
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-96 object-cover"
+                className="w-full max-h-[500px] object-contain bg-black"
                 loading="lazy"
               />
             </div>
@@ -250,7 +251,7 @@ const ProjectDetail = () => {
                       <img
                         src={otherProject.image}
                         alt={otherProject.title}
-                        className="w-full h-32 object-cover rounded-t-lg"
+                        className="w-full h-48 object-contain bg-black rounded-t-lg"
                         loading="lazy"
                       />
                       <div className="p-4">

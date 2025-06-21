@@ -38,8 +38,6 @@ const Skills = () => {
 
   return (
     <section id="skills" className="py-16 bg-luxurious-black relative overflow-hidden">
-      {/* Background gradients */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/3 via-transparent to-red-900/3" />
       
       <div className="max-w-6xl mx-auto px-8 sm:px-12 lg:px-16 relative z-10">
         <div className="space-y-12">
@@ -87,14 +85,7 @@ const Skills = () => {
               </div>
             ))}
           </div>
-          
-          {/* Bottom indicator - more compact */}
-          <div className="text-center pt-8">
-            <div className="inline-flex items-center gap-2 text-gray-400 font-typewriter text-xs tracking-widest uppercase">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span>Always learning</span>
-            </div>
-          </div>
+
         </div>
       </div>
     </section>

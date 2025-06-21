@@ -1,4 +1,3 @@
-
 export interface Project {
   id: string;
   slug: string;
@@ -19,9 +18,10 @@ export const projects: Project[] = [
     title: "Generalized Cameraman AI Agent",
     description: "AI-powered cameraman that identifies main action and smoothly zooms/pans automatically.",
     longDescription: "Developed a generalized cameraman that can identify the 'main action' from a video and smoothly zoom in & pan. Used Kalman & Spline interpolation, OpenCV video processing, desktop GUI with React & Electron for seamless video editing automation.",
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=400&fit=crop",
+    image: "/Cameraman-proj.png",
     technologies: ["Python", "SciPy", "OpenCV", "React", "Electron"],
     github: "https://github.com/koji0701",
+    demo: "https://use-cameraman.vercel.app/",
     featured: true
   },
   {
@@ -30,10 +30,10 @@ export const projects: Project[] = [
     title: "WashU Sublet Connect",
     description: "Full-stack 2-sided marketplace web app for WashU students to sublet apartments.",
     longDescription: "Developed a comprehensive marketplace platform helping WashU students find and list apartment sublets. Features user authentication, listing management, search functionality, and messaging system. Successfully serving 30+ active users.",
-    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=400&fit=crop",
+    image: "/WashUSubletConnect-proj.png",
     technologies: ["React", "Supabase", "PostgreSQL", "TypeScript"],
     github: "https://github.com/koji0701",
-    demo: "https://washu-sublet.vercel.app",
+    demo: "https://washu-sublet-connect.vercel.app/",
     featured: true
   },
   {
@@ -42,10 +42,10 @@ export const projects: Project[] = [
     title: "Supabase Social Media Starter Template",
     description: "Modern social media starter template accepted into Supabase official community templates.",
     longDescription: "Opinionated modern social media starter template using TypeScript, React, Supabase, Zustand, TailwindCSS. Accepted into Supabase official community templates with 65 unique clones, 16 stars, and 3 active forks.",
-    image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop",
+    image: "/SupaSocial-proj.png",
     technologies: ["React", "TypeScript", "Supabase", "Zustand", "TailwindCSS"],
     github: "https://github.com/koji0701",
-    demo: "https://supabase-social-template.vercel.app",
+    demo: "https://supasocial-peach.vercel.app/",
     featured: true
   },
   {
