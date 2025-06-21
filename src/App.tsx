@@ -10,6 +10,8 @@ const Home = lazy(() => import("./pages/Home"));
 const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
 const AllProjects = lazy(() => import("./pages/AllProjects"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const SectionHome = lazy(() => import("./pages/SectionHome"));
+const ResumePage = lazy(() => import("./pages/Resume"));
 
 const queryClient = new QueryClient();
 
@@ -42,8 +44,18 @@ const App = () => (
           <Suspense fallback={<PageLoader />}>
               <Routes>
                 <Route path="/" element={<Home />} />
+                {/* Section routes */}
+                <Route path="/about" element={<SectionHome />} />
+                <Route path="/experience" element={<SectionHome />} />
+                <Route path="/skills" element={<SectionHome />} />
+                {/* Resume */}
+                <Route path="/resume" element={<ResumePage />} />
+
+                {/* Projects */}
                 <Route path="/projects" element={<AllProjects />} />
                 <Route path="/projects/:slug" element={<ProjectDetail />} />
+
+                {/* 404 */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>

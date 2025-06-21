@@ -29,9 +29,9 @@ export const GitHubContributions: React.FC<GitHubContributionsProps> = ({
         
         // Use GitHub's GraphQL API to fetch contributions
         const query = `
-          query($username: String!) {
+          query($username: String!, $from: DateTime!, $to: DateTime!) {
             user(login: $username) {
-              contributionsCollection {
+              contributionsCollection(from: $from, to: $to) {
                 contributionCalendar {
                   weeks {
                     contributionDays {
@@ -55,7 +55,11 @@ export const GitHubContributions: React.FC<GitHubContributionsProps> = ({
           },
           body: JSON.stringify({
             query,
-            variables: { username }
+            variables: {
+              username,
+              from: "2025-01-01T00:00:00Z",
+              to: "2025-12-31T23:59:59Z"
+            }
           })
         })
 
@@ -153,11 +157,26 @@ export const GitHubContributions: React.FC<GitHubContributionsProps> = ({
     )
   }
 
-  // Organize contributions into weeks (7 days each)
-  const weeks: ContributionDay[][] = []
-  for (let i = 0; i < contributions.length; i += 7) {
-    weeks.push(contributions.slice(i, i + 7))
+  // Sort contributions chronologically (earliest first)
+  const sortedContributions = [...contributions].sort(
+    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+  )
+
+  // Determine column index based on number of weeks since the first contribution
+  const firstDate = sortedContributions[0]
+    ? new Date(sortedContributions[0].date)
+    : new Date("2025-01-01T00:00:00Z")
+
+  const millisecondsPerDay = 24 * 60 * 60 * 1000
+
+  const getColumn = (dateStr: string) => {
+    const diffDays = Math.floor(
+      (new Date(dateStr).getTime() - firstDate.getTime()) / millisecondsPerDay
+    )
+    return Math.floor(diffDays / 7) + 1 // 1-based column index
   }
+
+  const dayToRow = (d: number) => ((d + 1) % 7) + 1 // Saturday = 1, Sunday = 2 … Friday = 7
 
   return (
     <div className={cn("w-full max-w-4xl", className)}>
@@ -181,12 +200,15 @@ export const GitHubContributions: React.FC<GitHubContributionsProps> = ({
         </div>
 
         {/* Contributions Grid */}
-        <div className="bg-black/50 border border-gray-800 p-4 rounded-lg">
-          <div className="grid grid-cols-53 gap-1 max-w-full overflow-x-auto">
-            {weeks.map((week, weekIndex) => 
-              week.map((day, dayIndex) => (
+        <div className="bg-black/50 border border-gray-800 p-4 rounded-lg overflow-x-auto">
+          <div className="grid grid-flow-col auto-cols-max grid-rows-7 gap-1">
+            {sortedContributions.map((day, idx) => {
+              const dateObj = new Date(day.date)
+              const row = dayToRow(dateObj.getDay())
+              const col = getColumn(day.date)
+              return (
                 <div
-                  key={`${weekIndex}-${dayIndex}`}
+                  key={idx}
                   className={cn(
                     "w-3 h-3 rounded-sm border border-gray-800 transition-all duration-300 hover:border-gray-600",
                     day.contributionCount > 0 ? "animate-contribution" : ""
@@ -194,11 +216,13 @@ export const GitHubContributions: React.FC<GitHubContributionsProps> = ({
                   style={{
                     backgroundColor: day.color,
                     animationDelay: getRandomDelay(),
+                    gridRowStart: row,
+                    gridColumnStart: col,
                   } as CSSProperties}
                   title={`${day.contributionCount} contributions on ${day.date}`}
                 />
-              ))
-            )}
+              )
+            })}
           </div>
           
           {/* Summary */}

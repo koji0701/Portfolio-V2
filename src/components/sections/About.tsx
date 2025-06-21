@@ -1,7 +1,8 @@
 import { ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { GitHubContributions } from "@/components/ui/github-contributions";
+// import { GitHubContributions } from "@/components/ui/github-contributions";
+import { Link } from "react-router-dom";
 
 const About = () => {
   return (
@@ -35,30 +36,41 @@ const About = () => {
                 
                 {/* Bio Content */}
                 <div className="lg:col-span-2 space-y-8">
-                  <h3 className="text-2xl lg:text-3xl font-light text-white font-typewriter tracking-wide">
-                    Koji Wong
-                  </h3>
                   
                   <div className="space-y-6 text-gray-300 leading-relaxed font-typewriter text-sm tracking-wide">
                     <p>
-                      Computer Science + Mathematics student at Washington University in St. Louis with a 3.9 GPA and Dean's List recognition. 
-                      Passionate about building innovative solutions that bridge technology and real-world impact.
+                      Hi, I'm Koji! I'm from the SF Bay Area and I love building cool things. Currently, I am: 
+                      <ul>
+                        <li>- addicted to side projects</li>
+                        <li>- enjoying Luma events in SF</li>
+                        <li>- learning about applied RLHF</li>
+                        <li>- swe intern @ NYC Mayor's Office for Economic Opportunity</li>
+                      </ul>
+
+                    </p>
+                    <p>
+                      When I'm not coding, I'm usually:
+                      <ul>
+                        <li>- enjoying summer with friends</li>
+                        <li>- playing poker</li>
+                        <li>- lowballing on Depop</li>
+                      </ul>
+
                     </p>
                     
-                    <p>
-                      From leading hackathons with $5,000 prizes to developing AI-powered tools and full-stack applications, 
-                      I thrive on creating meaningful technology that solves complex problems and enhances user experiences.
-                    </p>
                   </div>
                   
                   {/* Resume Button */}
                   <Button
                     variant="outline"
                     className="border border-gray-700 text-white bg-transparent hover:bg-white hover:text-black transition-all duration-500 px-8 py-4 font-typewriter tracking-widest uppercase rounded-none"
-                    aria-label="Download resume"
+                    aria-label="View resume"
+                    asChild
                   >
-                    View Resume
-                    <ExternalLink size={16} className="ml-3" />
+                    <Link to="/resume">
+                      View Resume
+                      <ExternalLink size={16} className="ml-3" />
+                    </Link>
                   </Button>
                 </div>
               </div>
@@ -66,9 +78,9 @@ const About = () => {
           </Card>
           
           {/* GitHub Contributions Graph */}
-          <div className="flex justify-center">
+          {/* <div className="flex justify-center">
             <GitHubContributions username="koji0701" />
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

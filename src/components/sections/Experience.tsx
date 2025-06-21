@@ -5,12 +5,12 @@ import { experiences } from "@/data/experience";
 
 const Experience = () => {
   return (
-    <section id="experience" className="py-32 bg-luxurious-black relative overflow-hidden">
+    <section id="experience" className="py-20 bg-luxurious-black relative overflow-hidden">
       {/* Subtle gradient background */}
       <div className="absolute inset-0 bg-gradient-to-bl from-red-900/5 via-transparent to-purple-900/5" />
       
       <div className="max-w-6xl mx-auto px-8 sm:px-12 lg:px-16 relative z-10">
-        <div className="space-y-24">
+        <div className="space-y-16">
           {/* Section title */}
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-center text-gradient-red font-typewriter tracking-widest uppercase">
             Experience

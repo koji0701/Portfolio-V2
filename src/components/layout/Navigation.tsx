@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
@@ -58,8 +57,8 @@ const Navigation = () => {
             >
               /projects
             </button>
-            <Button variant="outline" size="sm" className="border-gray-600 text-black hover:bg-gray-800">
-              Resume
+            <Button variant="outline" size="sm" className="border-gray-600 text-black hover:bg-gray-800" asChild>
+              <Link to="/resume">Resume</Link>
             </Button>
           </div>
 
@@ -97,8 +96,8 @@ const Navigation = () => {
               >
                 Projects
               </button>
-              <Button variant="outline" size="sm" className="border-gray-600 text-white hover:bg-gray-800 w-fit">
-                Resume
+              <Button variant="outline" size="sm" className="border-gray-600 text-white hover:bg-gray-800 w-fit" asChild>
+                <Link to="/resume">Resume</Link>
               </Button>
             </div>
           </div>

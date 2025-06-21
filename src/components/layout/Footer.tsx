@@ -1,6 +1,6 @@
-
-import { Github, Linkedin, Mail, Heart } from "lucide-react";
+import { Github, Linkedin, Mail, Heart, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -11,9 +11,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Branding */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold text-white">Alex Johnson</h3>
-            <p className="text-gray-400 leading-relaxed">
-              Creative developer crafting digital experiences with modern web technologies.
+            <h3 className="text-xl font-bold text-white">Koji Wong</h3>
+            <p className="text-gray-400 leading-relaxed font-typewriter">
+              CS + Math student building cool things and exploring the intersection of technology & creativity.
             </p>
           </div>
           
@@ -21,18 +21,18 @@ const Footer = () => {
           <div className="space-y-4">
             <h4 className="text-lg font-semibold text-white">Quick Links</h4>
             <div className="flex flex-col space-y-2">
-              <a href="#about" className="text-gray-400 hover:text-white transition-colors duration-300">
+              <Link to="/about" className="text-gray-400 hover:text-white transition-colors duration-300">
                 About
-              </a>
-              <a href="#experience" className="text-gray-400 hover:text-white transition-colors duration-300">
+              </Link>
+              <Link to="/experience" className="text-gray-400 hover:text-white transition-colors duration-300">
                 Experience
-              </a>
-              <a href="#projects" className="text-gray-400 hover:text-white transition-colors duration-300">
+              </Link>
+              <Link to="/projects" className="text-gray-400 hover:text-white transition-colors duration-300">
                 Projects
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">
+              </Link>
+              <Link to="/resume" className="text-gray-400 hover:text-white transition-colors duration-300">
                 Resume
-              </a>
+              </Link>
             </div>
           </div>
           
@@ -60,9 +60,23 @@ const Footer = () => {
                 variant="outline"
                 size="icon"
                 className="rounded-full border-gray-600 text-gray-400 hover:bg-gray-800 hover:text-white hover:border-gray-500 transition-all duration-300"
-                aria-label="Email Contact"
+                aria-label="Twitter Profile"
+                asChild
               >
-                <Mail size={18} />
+                <a href="https://x.com/kojirwong" target="_blank" rel="noopener noreferrer">
+                  <Twitter size={18} />
+                </a>
+              </Button>
+              <Button
+                variant="outline"
+                size="icon"
+                className="rounded-full border-gray-600 text-gray-400 hover:bg-gray-800 hover:text-white hover:border-gray-500 transition-all duration-300"
+                aria-label="Email Contact"
+                asChild
+              >
+                <a href="mailto:k.r.wong@wustl.edu">
+                  <Mail size={18} />
+                </a>
               </Button>
             </div>
             <p className="text-gray-400 text-sm">
@@ -74,7 +88,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-gray-400 text-sm">
-            © {currentYear} Alex Johnson. All rights reserved.
+            © {currentYear} Koji Wong. All rights reserved.
           </p>
           <div className="flex items-center gap-1 text-gray-400 text-sm">
             <span>Made with</span>

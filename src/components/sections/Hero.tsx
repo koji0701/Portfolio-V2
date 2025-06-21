@@ -1,4 +1,4 @@
-import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Mail, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 // Import the Scene component directly - it already contains its own Canvas
 import { Scene as RubikCubeScene } from "@/components/ui/rubik-s-cube"; 
@@ -98,6 +98,17 @@ const Hero = () => {
           >
             <a href="mailto:k.r.wong@wustl.edu">
               <Mail size={20} />
+            </a>
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="w-12 h-12 rounded-none border border-gray-800 text-gray-400 hover:text-white hover:border-sky-500 transition-all duration-500 hover:bg-transparent"
+            aria-label="Twitter Profile"
+            asChild
+          >
+            <a href="https://x.com/kojirwong" target="_blank" rel="noopener noreferrer">
+              <Twitter size={20} />
             </a>
           </Button>
         </div>

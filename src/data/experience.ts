@@ -1,4 +1,3 @@
-
 export interface Experience {
   id: string;
   company: string;
@@ -12,11 +11,11 @@ export interface Experience {
 export const experiences: Experience[] = [
   {
     id: "1",
-    company: "NYC Mayor's Office for Economic Opportunity",
+    company: "New York City Mayor's Office for Economic Opportunity",
     role: "Software Engineering Intern",
-    duration: "May 2025 - Aug 2025",
-    description: "Developing backend systems for NYC programs",
-    technologies: ["Python", "AWS"],
+    duration: "May 2025 - Present",
+    description: "Backend dev to help New Yorkers with benefits programs",
+    technologies: ["Python", "AWS Lambda", "AWS API Gateway"],
     current: true
   },
   {
@@ -24,7 +23,7 @@ export const experiences: Experience[] = [
     company: "Washington University in St. Louis - Dr. Sibai",
     role: "Artificial Intelligence Research Assistant",
     duration: "Nov 2024 - Present",
-    description: "Developing tools to improve autonomous vehicle decision systems accuracy using Python, PyTorch & Habitat. Working on cutting-edge AI research for urban mobility solutions.",
+    description: "Safe autonomous vehicle decision systems",
     technologies: ["Python", "PyTorch", "Habitat", "AI/ML"],
     current: true
   },
@@ -32,27 +31,46 @@ export const experiences: Experience[] = [
     id: "3",
     company: "Google Developer Group WashU",
     role: "Software Engineer Team Lead",
-    duration: "Oct 2024 - Present",
-    description: "Leading team to engineer a full-stack WashU School of Medicine research tool for medical data harmony and visualization using React, TypeScript, FastAPI, Google Cloud Platform, Pandas.",
-    technologies: ["React", "TypeScript", "FastAPI", "GCP", "Pandas"],
+    duration: "Sep 2024 - Present",
+    description: "Technical consulting for WashU medical lab",
+    technologies: ["React", "TypeScript", "FastAPI", "GCP"],
     current: true
   },
   {
     id: "4",
-    company: "Social Fabric LLC",
-    role: "Founding Software Engineer",
-    duration: "Oct 2024 - Feb 2025",
-    description: "Developed a social media-esc mobile app with $40k+ in nondilutive funding. Leading architectural decisions for mobile app UI/UX libraries, navigation & state management.",
-    technologies: ["TypeScript", "Expo", "Zustand", "React Native"],
-    current: false
+    company: "WURocketry",
+    role: "Unified Flight Software Developer",
+    duration: "Sep 2024 - Mar 2025",
+    description: "Embedded systems programming",
+    technologies: ["C++"],
+    current: false // Assuming current date is after Mar 2025 or it's a planned future end
   },
   {
     id: "5",
-    company: "XR EDU",
-    role: "President",
-    duration: "Aug 2020 - Jun 2024",
-    description: "Led 100+ person club to develop $2,500 winning project in Samsung Solve For Tomorrow competition. Co-founded annual hackathon 'Hack the Planet' with $5000 prize sponsored by Adobe, PG&E, AoPS, & Wolfram. Managed $100,000 club funds to establish the first maker space at high school.",
-    technologies: ["Leadership", "Project Management", "Event Planning"],
+    company: "Social Fabric LLC",
+    role: "Founding Software Engineer",
+    duration: "Oct 2024 - Feb 2025",
+    description: "Founding software dev for student-run tech startup",
+    technologies: ["React Native", "Expo", "TypeScript"],
+    current: false
+  },
+
+  {
+    id: "6",
+    company: "Stanford Medicine, Dept. of Psychiatry & Behavioral Sciences",
+    role: "Neuroimaging Research Assistant",
+    duration: "Jun 2022 - Jul 2022",
+    description: "Functional near-infrared spectroscopy",
+    technologies: ["Python", "fNIRS", "Autoencoders"],
+    current: false
+  },
+  {
+    id: "7",
+    company: "TriValley CoderDojo",
+    role: "Leadership Council",
+    duration: "Sep 2018 - Sep 2022",
+    description: "Taught coding \& helped run org",
+    technologies: ["Java", "Python", "Management"],
     current: false
   }
 ];
