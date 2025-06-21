@@ -3,7 +3,7 @@ import { SkillCard } from "@/components/ui/skills-card";
 interface SkillCategory {
   title: string
   skills: string[]
-  variant: "primary" | "secondary" | "accent"
+  variant: "primary" | "secondary" | "accent" | "accent2" | "accent3"
 }
 
 const Skills = () => {
@@ -25,12 +25,12 @@ const Skills = () => {
     },
     {
       title: "Backend",
-      variant: "primary", // Changed from "secondary"
+      variant: "accent2",
       skills: ["Express", "FastAPI", "PostgreSQL", "Docker", "Django", "Flask", "Node.js"]
     },
     {
       title: "Database",
-      variant: "accent", // Changed from "primary"
+      variant: "accent3", 
       skills: ["AWS", "Supabase", "Google Cloud Platform"]
     },
 
@@ -48,9 +48,7 @@ const Skills = () => {
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-gradient-purple font-typewriter tracking-widest uppercase">
               Technical Skills
             </h2>
-            <p className="text-gray-400 font-typewriter text-xs tracking-wide">
-              Technologies and tools I use to build solutions
-            </p>
+
           </div>
           
           {/* Skills Grid - More compact layout */}
