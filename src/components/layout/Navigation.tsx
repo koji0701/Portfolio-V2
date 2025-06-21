@@ -45,12 +45,12 @@ const Navigation = () => {
             >
               /about
             </button>
-            <button 
+            {/* <button 
               onClick={() => scrollToSection("experience")} 
               className="text-gray-300 hover:text-white transition-colors cursor-pointer"
             >
               /experience
-            </button>
+            </button> */}
             <button 
               onClick={() => scrollToSection("projects")} 
               className="text-gray-300 hover:text-white transition-colors cursor-pointer"

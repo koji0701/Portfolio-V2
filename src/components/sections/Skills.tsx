@@ -16,23 +16,24 @@ const Skills = () => {
     {
       title: "AI & ML",
       variant: "secondary",
-      skills: ["PydanticAI", "LangGraph", "PyTorch", "TensorFlow", "OpenCV", "Pandas"]
+      skills: ["PydanticAI", "LangChain", "PyTorch", "TensorFlow", "OpenCV", "Pandas", "FastMCP"]
     },
     {
       title: "Frontend",
       variant: "accent",
-      skills: ["React", "Next.js", "Expo", "Tailwind", "Electron"]
+      skills: ["React", "Next.js", "Expo", "Tailwind", "Electron", "Zustand", "React Native", "Tailwind CSS"]
     },
     {
       title: "Backend",
-      variant: "primary",
-      skills: ["Express", "FastAPI", "PostgreSQL", "Supabase", "Google Cloud Platform", "Docker"]
+      variant: "primary", // Changed from "secondary"
+      skills: ["Express", "FastAPI", "PostgreSQL", "Docker", "Django", "Flask", "Node.js"]
     },
     {
-      title: "Tools",
-      variant: "secondary",
-      skills: ["Git", "FastMCP", "Postman", "Zustand"]
-    }
+      title: "Database",
+      variant: "accent", // Changed from "primary"
+      skills: ["AWS", "Supabase", "Google Cloud Platform"]
+    },
+
   ];
 
   return (
@@ -100,4 +101,4 @@ const Skills = () => {
   );
 };
 
-export default Skills; 
+export default Skills;

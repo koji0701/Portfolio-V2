@@ -12,7 +12,7 @@ const Experience = () => {
       <div className="max-w-6xl mx-auto px-8 sm:px-12 lg:px-16 relative z-10">
         <div className="space-y-16">
           {/* Section title */}
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-center text-gradient-red font-typewriter tracking-widest uppercase">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-center text-gradient-purple font-typewriter tracking-widest uppercase">
             Experience
           </h2>
           

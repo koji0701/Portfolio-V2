@@ -133,9 +133,11 @@ const Projects = () => {
               className="border border-gray-700 text-white bg-transparent hover:bg-white hover:text-black transition-all duration-500 px-12 py-6 font-typewriter tracking-widest uppercase rounded-none"
               asChild
             >
-              <Link to="/projects">
-                View All Projects ({projects.length})
-                <ArrowRight size={16} className="ml-4" />
+              {/* <Link to="/projects"> */}
+              <Link to="https://github.com/koji0701" target="_blank" rel="noopener noreferrer">
+                {/* View All Projects ({projects.length}) */}
+                View All Projects <Github size={16} className="ml-2" />  
+                {/* <ArrowRight size={16} className="ml-4" /> */}
               </Link>
             </Button>
           </div>
