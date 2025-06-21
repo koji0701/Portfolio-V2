@@ -4,7 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import { Analytics } from "@vercel/analytics/react";
 // Lazy load pages for better performance
 const Home = lazy(() => import("./pages/Home"));
 const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
@@ -62,6 +62,7 @@ const App = () => (
           </BrowserRouter>
         </div>
       </div>
+      <Analytics /> 
     </TooltipProvider>
   </QueryClientProvider>
 );
