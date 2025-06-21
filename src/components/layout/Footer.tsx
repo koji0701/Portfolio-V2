@@ -96,9 +96,8 @@ const Footer = () => {
             © {currentYear} Koji Wong. All rights reserved.
           </p>
           <div className="flex items-center gap-1 text-gray-400 text-sm">
-            <span>Made with</span>
-            <Heart size={16} className="text-red-500 animate-pulse" />
-            <span>and lots of coffee</span>
+            <span>Work in progress</span>
+
           </div>
         </div>
       </div>

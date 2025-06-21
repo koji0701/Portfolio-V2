@@ -38,6 +38,8 @@ const Skills = () => {
 
   return (
     <section id="skills" className="py-16 bg-luxurious-black relative overflow-hidden">
+      {/* Subtle gradient background - Added from About section */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/5 via-transparent to-red-900/5" />
       
       <div className="max-w-6xl mx-auto px-8 sm:px-12 lg:px-16 relative z-10">
         <div className="space-y-12">
