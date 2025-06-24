@@ -96,7 +96,7 @@ const Navigation = () => {
               >
                 Projects
               </button>
-              <Button variant="outline" size="sm" className="border-gray-600 text-white hover:bg-gray-800 w-fit" asChild>
+              <Button variant="outline" size="sm" className="border-gray-600 text-black hover:bg-gray-800 w-fit" asChild>
                 <Link to="/resume">Resume</Link>
               </Button>
             </div>
