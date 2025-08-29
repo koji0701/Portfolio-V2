@@ -59,13 +59,13 @@ const Hero = () => {
           </div>
           
           <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 font-light tracking-wide max-w-3xl mx-auto leading-relaxed font-typewriter">
-            cs + math student @ {" "}
-            <a href="https://wustl.edu" target="_blank" rel="noopener noreferrer">washu in st. louis</a>
+            cs + math @ {" "}
+            <a href="https://wustl.edu" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors duration-200">washu in st. louis</a>
             <br />
-            building cool things
+            prev swe @ <a href="https://codefour.us/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors duration-200">CodeFour (YC X25)</a>
           </p>
         </div>
-        
+         
         <div className="flex justify-center gap-8 mt-20 mb-16">
           <Button
             variant="ghost"

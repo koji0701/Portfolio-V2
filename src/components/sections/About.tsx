@@ -39,19 +39,17 @@ const About = () => {
                   
                   <div className="space-y-6 text-gray-300 leading-relaxed font-typewriter text-sm tracking-wide">
                     <p>
-                      Hi, I'm Koji! I'm from the SF Bay Area and I love building cool things. Currently, I am: 
+                      Hi, I'm Koji! I'm from the SF Bay Area and I'm interested in govtech, climate tech, and startups. Currently, I am: 
                       <ul>
                         <li>- addicted to side projects</li>
-                        <li>- enjoying Luma events in SF</li>
-                        <li>- learning about applied RLHF</li>
-                        <li>- swe intern @ NYC Mayor's Office for Economic Opportunity</li>
+                        <li>- learning about ml for political campaign strategy</li>
                       </ul>
 
                     </p>
                     <p>
                       When I'm not coding, I'm usually:
                       <ul>
-                        <li>- enjoying summer with friends</li>
+                        <li>- enjoying college with friends</li>
                         <li>- playing poker</li>
                         <li>- lowballing on Depop</li>
                       </ul>
