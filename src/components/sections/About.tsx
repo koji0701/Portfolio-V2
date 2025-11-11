@@ -6,14 +6,14 @@ import { Link } from "react-router-dom";
 
 const About = () => {
   return (
-    <section id="about" className="py-32 bg-luxurious-black relative overflow-hidden">
+    <section id="about" className="section py-32">
       {/* Subtle gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/5 via-transparent to-red-900/5" />
+      <div className="section-gradient-overlay bg-gradient-to-br from-purple-900/5 via-transparent to-red-900/5" />
       
-      <div className="max-w-6xl mx-auto px-8 sm:px-12 lg:px-16 relative z-10">
+      <div className="section-container">
         <div className="space-y-24">
           {/* Section title */}
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-center text-gradient-purple font-typewriter tracking-widest uppercase">
+          <h2 className="section-title">
             About
           </h2>
           
@@ -61,7 +61,7 @@ const About = () => {
                   {/* Resume Button */}
                   <Button
                     variant="outline"
-                    className="border border-gray-700 text-white bg-transparent hover:bg-white hover:text-black transition-all duration-500 px-8 py-4 font-typewriter tracking-widest uppercase rounded-none"
+                    className="btn btn-custom-outline px-8 py-4"
                     aria-label="View resume"
                     asChild
                   >

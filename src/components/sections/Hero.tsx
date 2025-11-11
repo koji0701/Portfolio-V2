@@ -13,7 +13,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-luxurious-black">
+    <section className="section min-h-screen flex items-center justify-center">
       {/* Container for the Rubik's Cube Scene - it already contains Canvas */}
       <div className="absolute inset-0 z-0">
         <RubikCubeScene />
@@ -38,15 +38,15 @@ const Hero = () => {
       />
       
       {/* Subtle red gradient backgrounds to match the original purple styling */}
-      <div className="absolute inset-0 bg-gradient-to-br from-red-900/8 via-transparent to-red-800/4 pointer-events-none z-[1]" />
-      <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-red-900/4 to-red-700/8 pointer-events-none z-[2]" />
-      <div className="absolute inset-0 bg-gradient-to-b from-red-900/4 via-transparent to-black/60 pointer-events-none z-[3]" />
+      <div className="section-gradient-overlay bg-gradient-to-br from-red-900/8 via-transparent to-red-800/4 pointer-events-none z-[1]" />
+      <div className="section-gradient-overlay bg-gradient-to-tr from-transparent via-red-900/4 to-red-700/8 pointer-events-none z-[2]" />
+      <div className="section-gradient-overlay bg-gradient-to-b from-red-900/4 via-transparent to-black/60 pointer-events-none z-[3]" />
       
       {/* Subtle red glow around the center text area */}
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-radial from-red-900/12 via-red-800/4 to-transparent blur-3xl pointer-events-none z-[4]" />
       
       {/* Dramatic gradient overlay for the Hero section */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/70 pointer-events-none z-[5]" /> 
+      <div className="section-gradient-overlay bg-gradient-to-b from-transparent via-black/10 to-black/70 pointer-events-none z-[5]" /> 
       
       {/* Content for the Hero section */}
       <div className="relative z-10 text-center max-w-6xl mx-auto px-8 sm:px-12 lg:px-16">
@@ -116,7 +116,7 @@ const Hero = () => {
         <Button
           onClick={scrollToProjects}
           variant="outline"
-          className="border border-gray-700 text-white bg-transparent hover:bg-white hover:text-black transition-all duration-500 px-12 py-6 text-sm font-typewriter tracking-widest uppercase rounded-none"
+          className="btn btn-custom-outline px-12 py-6 text-sm"
           aria-label="View my projects"
         >
           View Projects

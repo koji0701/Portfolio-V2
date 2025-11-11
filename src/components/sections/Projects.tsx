@@ -13,14 +13,14 @@ const Projects = () => {
   const featuredProjects = projects.filter(project => project.featured);
 
   return (
-    <section id="projects" className="py-32 bg-luxurious-black relative overflow-hidden">
+    <section id="projects" className="section py-32">
       {/* Gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/5 via-transparent to-red-900/5" />
+      <div className="section-gradient-overlay bg-gradient-to-tr from-purple-900/5 via-transparent to-red-900/5" />
       
       <div className="max-w-7xl mx-auto px-8 sm:px-12 lg:px-16 relative z-10">
         <div className="space-y-24">
           {/* Section title */}
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-center text-gradient-purple font-typewriter tracking-widest uppercase">
+          <h2 className="section-title">
             Featured Projects
           </h2>
           
@@ -104,7 +104,7 @@ const Projects = () => {
                       {project.technologies.map((tech) => (
                         <span
                           key={tech}
-                          className="px-2 py-1 bg-transparent border border-gray-800 text-gray-400 text-xs font-typewriter tracking-wider hover:border-gray-600 hover:text-white transition-all duration-500 uppercase"
+                          className="tech-tag"
                         >
                           {tech}
                         </span>
@@ -129,7 +129,7 @@ const Projects = () => {
           <div className="text-center">
             <Button
               variant="outline"
-              className="border border-gray-700 text-white bg-transparent hover:bg-white hover:text-black transition-all duration-500 px-12 py-6 font-typewriter tracking-widest uppercase rounded-none"
+              className="btn btn-custom-outline px-12 py-6"
               asChild
             >
               {/* <Link to="/projects"> */}

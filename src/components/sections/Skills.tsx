@@ -37,15 +37,15 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-16 bg-luxurious-black relative overflow-hidden">
+    <section id="skills" className="section py-16">
       {/* Subtle gradient background - Added from About section */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/5 via-transparent to-red-900/5" />
+      <div className="section-gradient-overlay bg-gradient-to-br from-purple-900/5 via-transparent to-red-900/5" />
       
-      <div className="max-w-6xl mx-auto px-8 sm:px-12 lg:px-16 relative z-10">
+      <div className="section-container">
         <div className="space-y-12">
           {/* Section title */}
           <div className="text-center space-y-3">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-gradient-purple font-typewriter tracking-widest uppercase">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light font-typewriter tracking-widest uppercase">
               Technical Skills
             </h2>
 
