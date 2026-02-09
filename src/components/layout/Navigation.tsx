@@ -19,7 +19,7 @@ const Navigation = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ 
+      element.scrollIntoView({
         behavior: "smooth",
         block: "start"
       });
@@ -28,9 +28,8 @@ const Navigation = () => {
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled ? "bg-gray-950/90 backdrop-blur-md border-b border-gray-800" : "bg-transparent"
-    }`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-gray-950/90 backdrop-blur-md border-b border-gray-800" : "bg-transparent"
+      }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="text-xl font-bold text-white hover:text-gray-300 transition-colors">
@@ -39,8 +38,8 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <button 
-              onClick={() => scrollToSection("about")} 
+            <button
+              onClick={() => scrollToSection("about")}
               className="text-gray-300 hover:text-white transition-colors cursor-pointer"
             >
               /about
@@ -51,15 +50,17 @@ const Navigation = () => {
             >
               /experience
             </button> */}
-            <button 
-              onClick={() => scrollToSection("projects")} 
+            <button
+              onClick={() => scrollToSection("projects")}
               className="text-gray-300 hover:text-white transition-colors cursor-pointer"
             >
               /projects
             </button>
+            {/* Resume button - temporarily commented out
             <Button variant="outline" size="sm" className="border-gray-600 text-black hover:bg-gray-800" asChild>
               <Link to="/resume">Resume</Link>
             </Button>
+            */}
           </div>
 
           {/* Mobile Navigation Button */}
@@ -78,27 +79,29 @@ const Navigation = () => {
         {isOpen && (
           <div className="md:hidden bg-gray-900/95 backdrop-blur-md rounded-lg mt-2 p-4 border border-gray-800">
             <div className="flex flex-col space-y-4">
-              <button 
-                onClick={() => scrollToSection("about")} 
+              <button
+                onClick={() => scrollToSection("about")}
                 className="text-gray-300 hover:text-white transition-colors text-left cursor-pointer"
               >
                 About
               </button>
-              <button 
-                onClick={() => scrollToSection("experience")} 
+              <button
+                onClick={() => scrollToSection("experience")}
                 className="text-gray-300 hover:text-white transition-colors text-left cursor-pointer"
               >
                 Experience
               </button>
-              <button 
-                onClick={() => scrollToSection("projects")} 
+              <button
+                onClick={() => scrollToSection("projects")}
                 className="text-gray-300 hover:text-white transition-colors text-left cursor-pointer"
               >
                 Projects
               </button>
+              {/* Resume button - temporarily commented out
               <Button variant="outline" size="sm" className="border-gray-600 text-black hover:bg-gray-800 w-fit" asChild>
                 <Link to="/resume">Resume</Link>
               </Button>
+              */}
             </div>
           </div>
         )}

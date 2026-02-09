@@ -58,7 +58,7 @@ const About = () => {
                     
                   </div>
                   
-                  {/* Resume Button */}
+                  {/* Resume Button - temporarily commented out
                   <Button
                     variant="outline"
                     className="btn btn-custom-outline px-8 py-4"
@@ -70,6 +70,7 @@ const About = () => {
                       <ExternalLink size={16} className="ml-3" />
                     </Link>
                   </Button>
+                  */}
                 </div>
               </div>
             </CardContent>
