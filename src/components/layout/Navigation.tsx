@@ -50,17 +50,15 @@ const Navigation = () => {
             >
               /experience
             </button> */}
-            <button
+            {/* <button
               onClick={() => scrollToSection("projects")}
               className="text-gray-300 hover:text-white transition-colors cursor-pointer"
             >
               /projects
-            </button>
-            {/* Resume button - temporarily commented out
-            <Button variant="outline" size="sm" className="border-gray-600 text-black hover:bg-gray-800" asChild>
+            </button> */}
+            {/* <Button variant="outline" size="sm" className="bg-white text-black hover:bg-gray-200 hover:text-black font-semibold" asChild>
               <Link to="/resume">Resume</Link>
-            </Button>
-            */}
+            </Button> */}
           </div>
 
           {/* Mobile Navigation Button */}
@@ -91,17 +89,15 @@ const Navigation = () => {
               >
                 Experience
               </button>
-              <button
+              {/* <button
                 onClick={() => scrollToSection("projects")}
                 className="text-gray-300 hover:text-white transition-colors text-left cursor-pointer"
               >
                 Projects
-              </button>
-              {/* Resume button - temporarily commented out
-              <Button variant="outline" size="sm" className="border-gray-600 text-black hover:bg-gray-800 w-fit" asChild>
+              </button> */}
+              {/* <Button variant="outline" size="sm" className="bg-white text-black hover:bg-gray-200 hover:text-black w-fit font-semibold" asChild>
                 <Link to="/resume">Resume</Link>
-              </Button>
-              */}
+              </Button> */}
             </div>
           </div>
         )}

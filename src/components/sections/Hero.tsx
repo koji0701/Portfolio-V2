@@ -59,10 +59,9 @@ const Hero = () => {
           </div>
           
           <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 font-light tracking-wide max-w-3xl mx-auto leading-relaxed font-typewriter">
-            cs + math @ {" "}
-            <a href="https://wustl.edu" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors duration-200">washu in st. louis</a>
+            cs + math @ washington university in st. louis
             <br />
-            prev swe @ <a href="https://codefour.us/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors duration-200">CodeFour (YC X25)</a>
+            incoming swe @ capital one
           </p>
         </div>
          
@@ -119,7 +118,7 @@ const Hero = () => {
           className="btn btn-custom-outline px-12 py-6 text-sm"
           aria-label="View my projects"
         >
-          View Projects
+          About me!
           <ArrowDown size={16} className="ml-4" />
         </Button>
       </div>

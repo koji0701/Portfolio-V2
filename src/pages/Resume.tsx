@@ -24,7 +24,7 @@ const ResumePage = () => {
       <div className="w-full max-w-6xl flex-1 border border-gray-800">
         <iframe
           title="Koji Wong Resume"
-          src="/Koji_Wong_2028_Resume.pdf#toolbar=0&navpanes=0&view=FitH"
+          src="/Koji_Wong_2028_Resume%20(5).pdf#toolbar=0&navpanes=0&view=FitH"
           className="w-full h-[calc(100vh-8rem)]"
         />
       </div>

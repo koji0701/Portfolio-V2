@@ -24,7 +24,7 @@ const AllProjects = () => {
             <div className="space-y-24">
               {/* Section title */}
               <div className="text-center space-y-4">
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light text-gradient-purple font-typewriter tracking-widest uppercase">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white font-typewriter tracking-widest uppercase">
                   All Projects
                 </h1>
                 <p className="text-gray-400 font-typewriter text-sm tracking-wider uppercase">
@@ -100,7 +100,7 @@ const AllProjects = () => {
                       
                       {/* Project Info */}
                       <div className="p-8">
-                        <h3 className="text-xl font-light text-white mb-4 group-hover:text-gradient-purple transition-colors duration-500 font-typewriter tracking-wide">
+                        <h3 className="text-xl font-light text-white mb-4 transition-colors duration-500 font-typewriter tracking-wide">
                           {project.title}
                         </h3>
                         

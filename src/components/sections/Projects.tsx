@@ -91,7 +91,7 @@ const Projects = () => {
                   
                   {/* Project Info */}
                   <div className="p-8">
-                    <h3 className="text-xl font-light text-white mb-4 group-hover:text-gradient-purple transition-colors duration-500 font-typewriter tracking-wide">
+                    <h3 className="text-xl font-light text-white mb-4 transition-colors duration-500 font-typewriter tracking-wide">
                       {project.title}
                     </h3>
                     

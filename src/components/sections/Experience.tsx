@@ -12,7 +12,7 @@ const Experience = () => {
       <div className="section-container">
         <div className="space-y-16">
           {/* Section title */}
-          <h2 className="section-title text-gradient-purple">
+          <h2 className="section-title">
             Experience
           </h2>
           
@@ -39,7 +39,7 @@ const Experience = () => {
                     <Card className="custom-card hover:border-gray-700 transition-all duration-700 hover:shadow-lg hover:shadow-purple-500/5">
                       <CardContent className="p-8">
                         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
-                          <h3 className="text-xl lg:text-2xl font-light text-white group-hover:text-gradient-purple transition-colors duration-500 font-typewriter tracking-wide">
+                          <h3 className="text-xl lg:text-2xl font-light text-white transition-colors duration-500 font-typewriter tracking-wide">
                             {exp.role}
                           </h3>
                           {exp.current && (

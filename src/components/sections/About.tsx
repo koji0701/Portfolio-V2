@@ -14,7 +14,7 @@ const About = () => {
         <div className="space-y-24">
           {/* Section title */}
           <h2 className="section-title">
-            About
+            Hi, I'm Koji!
           </h2>
           
           <Card className="bg-black/50 border border-gray-800 backdrop-blur-sm rounded-none">
@@ -39,23 +39,28 @@ const About = () => {
                   
                   <div className="space-y-6 text-gray-300 leading-relaxed font-typewriter text-sm tracking-wide">
                     <p>
-                      Hi, I'm Koji! I'm from the SF Bay Area and I'm interested in govtech, climate tech, and startups. Currently, I am: 
-                      <ul>
-                        <li>- addicted to side projects</li>
-                        <li>- learning about ml for political campaign strategy</li>
-                      </ul>
-
+                      I'm a second-year at Washington University in St. Louis studying CS and Math. I'm broadly interested in govtech, green energy, trading, and startups.
                     </p>
                     <p>
-                      When I'm not coding, I'm usually:
-                      <ul>
-                        <li>- enjoying college with friends</li>
-                        <li>- playing poker</li>
-                        <li>- lowballing on Depop</li>
-                      </ul>
-
+                      This summer, I'll be a software engineer intern at Capital One and heading to Chicago for IMC Launchpad.
                     </p>
-                    
+                    <div className="space-y-2">
+                      <p>Previously, I've:</p>
+                      <ul className="space-y-2 pl-4">
+                        <li>
+                          - Built the first iteration of the <a href="https://codefour.us/products/redactions" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-300 underline decoration-gray-500 hover:decoration-gray-400 transition-all">redactions product</a> at Code Four (YC X25)
+                        </li>
+                        <li>
+                          - Worked on the <a href="https://access.nyc.gov/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-300 underline decoration-gray-500 hover:decoration-gray-400 transition-all">Access NYC backend</a> at the NYC Mayor's Office for Economic Opportunity
+                        </li>
+                        <li>
+                          - Built virtual environments for simulating autonomous vehicle and humanoid decision systems at WashU
+                        </li>
+                        <li>
+                          - Spent time swe consulting @ <a href="https://better.vc" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-300 underline decoration-gray-500 hover:decoration-gray-400 transition-all duration-200">Better Ventures</a> and as a swe @ the world's smallest sport (biotech, iykyk)
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                   
                   {/* Resume Button - temporarily commented out

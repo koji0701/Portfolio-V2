@@ -134,12 +134,7 @@
     background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 50%, #0c0c0c 100%);
   }
 
-  .text-gradient-purple {
-    background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
+
 
   .text-gradient-red {
     background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);

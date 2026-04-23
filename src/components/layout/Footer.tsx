@@ -14,7 +14,7 @@ const Footer = () => {
           <div className="space-y-4 md:col-span-2">
             <h3 className="text-xl font-bold text-white">Koji Wong</h3>
             <p className="text-gray-400 leading-relaxed font-typewriter">
-              CS + Math student building cool things
+              CS + Math @ Washington University in St. Louis
             </p>
           </div>
           
@@ -95,10 +95,7 @@ const Footer = () => {
           <p className="text-gray-400 text-sm">
             © {currentYear} Koji Wong. All rights reserved.
           </p>
-          <div className="flex items-center gap-1 text-gray-400 text-sm">
-            <span>Work in progress</span>
 
-          </div>
         </div>
       </div>
     </footer>
