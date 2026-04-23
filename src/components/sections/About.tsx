@@ -57,7 +57,7 @@ const About = () => {
                           - Built virtual environments for simulating autonomous vehicle and humanoid decision systems at WashU
                         </li>
                         <li>
-                          - Spent time swe consulting @ <a href="https://better.vc" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-300 underline decoration-gray-500 hover:decoration-gray-400 transition-all duration-200">Better Ventures</a> and as a swe @ the world's smallest sport (biotech, iykyk)
+                          - Spent a semester as a swe @ the world's smallest sport (biotech, iykyk)
                         </li>
                       </ul>
                     </div>
