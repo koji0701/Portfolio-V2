@@ -42,7 +42,7 @@ const About = () => {
                       I'm a second-year at Washington University in St. Louis studying CS and Math. I'm broadly interested in govtech, green energy, trading, and startups.
                     </p>
                     <p>
-                      This summer, I'll be a software engineer intern at Capital One and heading to Chicago for IMC Launchpad.
+                      This summer, I'll be a software engineer intern at Capital One. I'll also be in Chicago for IMC Launchpad in May, and be at YC Startup School in SF in July. Hmu if you're in the area! 
                     </p>
                     <div className="space-y-2">
                       <p>Previously, I've:</p>
