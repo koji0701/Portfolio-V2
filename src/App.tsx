@@ -12,6 +12,7 @@ const AllProjects = lazy(() => import("./pages/AllProjects"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const SectionHome = lazy(() => import("./pages/SectionHome"));
 const ResumePage = lazy(() => import("./pages/Resume"));
+const FiggieBenchmark = lazy(() => import("./pages/FiggieBenchmark"));
 
 const queryClient = new QueryClient();
 
@@ -54,6 +55,9 @@ const App = () => (
                 {/* Projects */}
                 <Route path="/projects" element={<AllProjects />} />
                 <Route path="/projects/:slug" element={<ProjectDetail />} />
+
+                {/* Figgie Benchmark */}
+                <Route path="/figgie-benchmark" element={<FiggieBenchmark />} />
 
                 {/* 404 */}
                 <Route path="*" element={<NotFound />} />

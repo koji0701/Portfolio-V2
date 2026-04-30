@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Figgie-Bench: Frontier LLMs at the Trading Table</title>
+  <meta name="description" content="Benchmarking GPT-5.4, Gemini 3.1 Pro, Claude Opus 4.6, and Grok 4.1 Fast on Jane Street's Figgie market trading game.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:           #0b0a08;
+      --surface:      #131109;
+      --surface-2:    #1b1810;
+      --surface-3:    #252018;
+      --text:         #ede5d0;
+      --text-dim:     #9a8e78;
+      --text-muted:   #5c5244;
+      --gold:         #c4912a;
+      --gold-bright:  #e4b84a;
+      --gold-dim:     #7a5c1a;
+      --green:        #3d7a52;
+      --green-bright: #5aab74;
+      --red:          #a83428;
+      --red-bright:   #d04a3c;
+      --blue:         #3a6a9a;
+      --blue-bright:  #5a9acc;
+      --border:       #28241c;
+      --border-hi:    #3a3428;
+
+      --font-display: 'Cormorant', Georgia, serif;
+      --font-body:    'Crimson Pro', Georgia, serif;
+      --font-mono:    'JetBrains Mono', 'Courier New', monospace;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 1.125rem;
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Layout ────────────────────────────── */
+    .wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section {
+      padding: 4.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    section:last-of-type { border-bottom: none; }
+
+    /* ── Type ──────────────────────────────── */
+    h1, h2, h3 { font-family: var(--font-display); }
+
+    h1 {
+      font-size: clamp(3.6rem, 9vw, 6.5rem);
+      font-weight: 300;
+      letter-spacing: -0.025em;
+      line-height: 0.95;
+    }
+
+    h2 {
+      font-size: clamp(1.7rem, 4vw, 2.5rem);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      margin-bottom: 1.4rem;
+    }
+
+    h3 {
+      font-size: 1.45rem;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+      line-height: 1.25;
+      margin-bottom: 0.7rem;
+    }
+
+    p { margin-bottom: 1.15em; }
+    p:last-child { margin-bottom: 0; }
+
+    a {
+      color: var(--gold-bright);
+      text-decoration-line: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      transition: color 0.15s;
+    }
+    a:hover { color: var(--text); }
+
+    strong { font-weight: 600; color: var(--text); }
+    em { font-style: italic; }
+
+    .mono {
+      font-family: var(--font-mono);
+      font-size: 0.85em;
+      letter-spacing: -0.02em;
+    }
+
+    /* ── Label / eyebrow ───────────────────── */
+    .label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    /* ── Hero ──────────────────────────────── */
+    .hero {
+      padding: 7rem 0 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-suits {
+      position: absolute;
+      top: 2.5rem;
+      right: 2rem;
+      font-size: 1.1rem;
+      letter-spacing: 1rem;
+      color: var(--border-hi);
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .hero h1 { margin-bottom: 1.6rem; }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold-bright);
+    }
+
+    .hero-sub {
+      font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+      color: var(--text-dim);
+      max-width: 540px;
+      line-height: 1.6;
+      margin-bottom: 2.8rem;
+    }
+
+    .hero-rule {
+      width: 48px;
+      height: 2px;
+      background: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 2rem;
+    }
+
+    .hero-meta-item {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+
+    .hero-meta-item span { color: var(--text-dim); }
+
+    /* ── Section divider ───────────────────── */
+    .suit-rule {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 2.5rem 0;
+    }
+    .suit-rule::before, .suit-rule::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .suit-rule span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      letter-spacing: 0.6rem;
+      padding-right: 0.6rem;
+    }
+
+    /* ── Callouts ──────────────────────────── */
+    .callout {
+      background: var(--surface-2);
+      border: 1px solid var(--border-hi);
+      border-left: 3px solid var(--gold);
+      padding: 1.15rem 1.4rem;
+      border-radius: 0 4px 4px 0;
+      margin: 2rem 0;
+      font-size: 1rem;
+      color: var(--text);
+      line-height: 1.65;
+    }
+    .callout--green { border-left-color: var(--green); }
+    .callout--red   { border-left-color: var(--red); }
+
+    /* ── Blockquote / trajectory ───────────── */
+    blockquote {
+      margin: 1.5rem 0;
+      padding: 1.1rem 1.4rem;
+      background: var(--surface);
+      border: 1px solid var(--border-hi);
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      line-height: 1.75;
+      color: var(--text-dim);
+    }
+    blockquote cite {
+      display: block;
+      margin-top: 0.65rem;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    /* ── Stat grid ─────────────────────────── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.9rem;
+      margin: 2.2rem 0;
+    }
+    @media (max-width: 680px) {
+      .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top-width: 2px;
+      padding: 1.2rem 1.1rem;
+      border-radius: 3px;
+    }
+    .s-gpt     { border-top-color: #4ab870; }
+    .s-gemini  { border-top-color: #5a9acc; }
+    .s-opus    { border-top-color: #c4a050; }
+    .s-grok    { border-top-color: #c04840; }
+
+    .stat-model {
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-val {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      font-weight: 300;
+      line-height: 1;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+
+    .stat-sub { font-size: 0.75rem; color: var(--text-muted); }
+
+    .stat-delta {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      margin-top: 0.3rem;
+    }
+    .d-pos { color: var(--green-bright); }
+    .d-neg { color: var(--red-bright); }
+    .d-neu { color: var(--text-muted); }
+
+    /* ── Tables ────────────────────────────── */
+    .table-wrap { overflow-x: auto; margin: 1.75rem 0; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+    }
+
+    th {
+      text-align: left;
+      padding: 0.6rem 1rem;
+      background: var(--surface-2);
+      color: var(--text-dim);
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      border-bottom: 1px solid var(--border-hi);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 0.52rem 1rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      vertical-align: middle;
+    }
+
+    tr:hover td { background: var(--surface); }
+
+    .hi   { color: var(--gold-bright); font-weight: 600; }
+    .pos  { color: var(--green-bright); }
+    .neg  { color: var(--red-bright); }
+    .dim  { color: var(--text-muted); }
+
+    .tfoot-row td {
+      border-top: 1px solid var(--border-hi);
+      font-weight: 600;
+    }
+
+    /* ── Figures ───────────────────────────── */
+    .fig { margin: 2.5rem 0; }
+
+    .fig img {
+      width: 100%;
+      border-radius: 5px;
+      border: 1px solid var(--border-hi);
+      display: block;
+      background: var(--surface);
+    }
+
+    .fig-cap {
+      margin-top: 0.8rem;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.55;
+    }
+
+    /* ── Findings ──────────────────────────── */
+    .findings { display: flex; flex-direction: column; gap: 1.4rem; margin: 2rem 0; }
+
+    .finding {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 1.8rem;
+    }
+
+    .finding-n {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.65rem;
+    }
+
+    .finding h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.9rem;
+      line-height: 1.25;
+    }
+
+    .finding p {
+      font-size: 0.975rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+
+    /* ── Oracle score display ──────────────── */
+    .oracle-box {
+      background: #07090f;
+      border: 1px solid #1a2535;
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 2rem 0;
+    }
+
+    .oracle-header {
+      background: #0e1420;
+      padding: 0.7rem 1.3rem;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #3a5878;
+      border-bottom: 1px solid #1a2535;
+    }
+
+    .oracle-body { padding: 1.2rem 1.3rem; }
+
+    .oracle-row {
+      display: flex;
+      align-items: center;
+      padding: 0.42rem 0;
+      border-bottom: 1px solid #111d2c;
+      font-family: var(--font-mono);
+      font-size: 0.86rem;
+      gap: 0.9rem;
+    }
+    .oracle-row:last-child { border-bottom: none; }
+
+    .oracle-name { width: 60px; flex-shrink: 0; }
+    .o-you   { color: #5abc7a; font-weight: 600; }
+    .o-llm1  { color: #e8b84a; }
+    .o-llm2  { color: #5a9acc; }
+    .o-llm3  { color: #a080cc; }
+
+    .oracle-track {
+      flex: 1;
+      height: 5px;
+      background: #0d1828;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .oracle-bar {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 0.4s ease;
+    }
+    .ob-you  { background: #5abc7a; }
+    .ob-llm1 { background: #e8b84a; }
+    .ob-llm2 { background: #5a9acc; }
+    .ob-llm3 { background: #a080cc; }
+
+    .oracle-score {
+      width: 36px;
+      text-align: right;
+      color: #c8c0b0;
+    }
+
+    .oracle-tag {
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: #5abc7a;
+      width: 50px;
+    }
+
+    /* ── Rationale list ────────────────────── */
+    .rationale {
+      list-style: none;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      overflow: hidden;
+      margin: 1.8rem 0;
+    }
+
+    .rationale li {
+      display: flex;
+      gap: 1.1rem;
+      padding: 1rem 1.3rem;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.98rem;
+    }
+    .rationale li:last-child { border-bottom: none; }
+    .rationale li:hover { background: var(--surface); }
+
+    .r-suit {
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 0.05rem;
+      width: 1.2rem;
+      text-align: center;
+    }
+    .r-spade   { color: #8090b0; }
+    .r-diamond { color: var(--red-bright); }
+    .r-club    { color: var(--green-bright); }
+    .r-heart   { color: #e87a8a; }
+
+    .r-body { display: flex; flex-direction: column; gap: 0.2rem; }
+    .r-game    { color: var(--text); font-weight: 500; }
+    .r-trading { color: var(--text-muted); font-style: italic; font-size: 0.92rem; }
+
+    /* ── Signal grid ───────────────────────── */
+    .signal-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.9rem;
+      margin: 1.8rem 0;
+    }
+    @media (max-width: 560px) { .signal-grid { grid-template-columns: 1fr; } }
+
+    .signal-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.2rem;
+      border-radius: 4px;
+    }
+    .signal-item h4 {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .signal-item p {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    /* ── Model chips ───────────────────────── */
+    .chip {
+      display: inline-block;
+      padding: 0.1rem 0.55rem;
+      border-radius: 3px;
+      font-family: var(--font-mono);
+      font-size: 0.75em;
+      font-weight: 500;
+      vertical-align: middle;
+    }
+    .c-gpt    { background: rgba(74,184,112,0.12); color: #5ab878; border: 1px solid rgba(74,184,112,0.2); }
+    .c-gemini { background: rgba(90,154,204,0.12); color: #6aaad4; border: 1px solid rgba(90,154,204,0.2); }
+    .c-opus   { background: rgba(196,160,80,0.12); color: #c4a060; border: 1px solid rgba(196,160,80,0.2); }
+    .c-grok   { background: rgba(192,72,64,0.12);  color: #c86860; border: 1px solid rgba(192,72,64,0.2);  }
+
+    /* ── Footer ────────────────────────────── */
+    footer {
+      padding: 3.5rem 0 4rem;
+      text-align: center;
+    }
+
+    .footer-suits {
+      font-size: 1.4rem;
+      letter-spacing: 1.1rem;
+      padding-left: 1.1rem;
+      color: var(--border-hi);
+      margin-bottom: 1.1rem;
+    }
+
+    .footer-text {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── Animations ────────────────────────── */
+    @keyframes up {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero .label     { animation: up 0.55s ease both 0s; }
+    .hero h1         { animation: up 0.55s ease both 0.08s; }
+    .hero .hero-sub  { animation: up 0.55s ease both 0.16s; }
+    .hero .hero-rule { animation: up 0.55s ease both 0.22s; }
+    .hero .hero-meta { animation: up 0.55s ease both 0.28s; }
+
+    /* ── Responsive tweaks ─────────────────── */
+    @media (max-width: 560px) {
+      .wrap { padding: 0 1.25rem; }
+      .hero { padding: 4rem 0 3rem; }
+      section { padding: 3rem 0; }
+      .hero h1 { font-size: 3.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ HERO ══════════════════════════════════════════════════ -->
+<header class="hero">
+  <div class="wrap">
+    <span class="hero-suits" aria-hidden="true">♠ ♦ ♣ ♥</span>
+    <!-- <span class="label">Research Benchmark &middot; April 2026</span> -->
+    <h1>Figgie<em>-Bench</em></h1>
+    <p class="hero-sub">
+      I benchmarked four fronteir LLMs on Figgie, a card trading game meant to test GTO thinking. 
+    </p>
+    <div class="hero-rule"></div>
+    <div class="hero-meta">
+      <div class="hero-meta-item">Author <span>Koji Wong</span></div>
+      <div class="hero-meta-item">Trials <span>n=10 &nbsp;(5 rounds &times; pass@2)</span></div>
+      <div class="hero-meta-item">Models <span>GPT-5.4 &nbsp;&middot;&nbsp; Gemini 3.1 Pro &nbsp;&middot;&nbsp; Claude Opus 4.6 &nbsp;&middot;&nbsp; Grok 4.1 Fast</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ══ WHAT IS FIGGIE ════════════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <span class="label">Background</span>
+    <h2>What is Figgie?</h2>
+
+    <p>
+      <a href="https://www.figgie.com/how-to-play.html" target="_blank" rel="noopener">Figgie</a> is
+      Jane Street's trading card game. 40 cards, 4 suits. One suit has 12 cards (the "common" suit), one
+      has 8 (the "goal" suit), and two have 10. The goal suit is always the color complement of the common
+      suit (spades&harr;clubs, diamonds&harr;hearts), so if diamonds are common, hearts are the goal.
+    </p>
+
+    <p>
+      Nobody knows which suit is the goal. You get dealt a hand, you
+      see the order book, and you trade against three other players in a continuous double-auction.
+      At the end, whoever holds the most goal-suit cards wins a 200-chip pot bonus. Each goal-suit card
+      pays 10 chips. Every other suit pays nothing.
+    </p>
+
+    <p>
+      Scoring is simple: you start with 500 chips. Above 500 means you made money. Below means you
+      gave it away.
+    </p>
+
+    <div class="fig">
+      <img src="/figures/card_distributions.png" alt="Card distribution visualization: even deal vs. skewed deal across four hands">
+      <p class="fig-cap">
+        The two deal types used in the benchmark. The even deal spreads cards uniformly across players.
+        The skewed "advantaged" deal clusters the 12-card common suit, giving one player a strong hand
+        signal to infer the hidden goal suit.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BENCHMARK DESIGN ══════════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <span class="label">Methodology</span>
+    <h2>Benchmark Design</h2>
+
+    <p>
+      I set up four frontier LLMs to play Figgie against each other in a turn-based variant. Each turn,
+      a model sees its hand, the live order book, and its full conversation history, then outputs a bid,
+      ask, or pass as structured JSON. The engine rejects invalid actions, so no accidentally overbidding,
+      selling cards you don't hold, or breaking rules.
+    </p>
+
+    <p>
+      Since it's a card game, starting hands matter. To control for that, I used fixed deals: one
+      "even" game where cards are spread uniformly, then four "advantaged" trials where the same skewed
+      deal rotates through each model's seat. Every model gets the strong hand exactly once and suffers
+      through the weak ones too. Five trials &times; 2 passes = 10 games total.
+    </p>
+
+    <div class="callout">
+      Ideally I'd randomize deals and run way more trials, but that gets expensive fast. With 10 games
+      across fixed deals, score differences mostly reflect reasoning quality rather than luck.
+    </div>
+
+    <div class="fig">
+      <img src="/figures/deck_layout.png" alt="40-card deck layout showing alternating and clustered deal patterns">
+      <p class="fig-cap">
+        Full 40-card deck visualization. The even deal alternates suits uniformly across all four hands.
+        The skewed deal clusters the 12-card common suit. Hand 1 (ADV) starts with five of those cards,
+        giving the strongest possible hand signal.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ RESULTS ═══════════════════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <span class="label">Results</span>
+    <h2>How They Ranked</h2>
+
+    <p>
+      GPT-5.4 won pretty convincingly with a 534.2 composite average. Gemini 3.1 Pro came in second at
+      511.3, Opus 4.6 basically broke even at 501.7, and Grok 4.1 Fast lost money at 452.8. Everyone
+      starts at 500.
+    </p>
+
+    <div class="stat-grid">
+      <div class="stat-card s-gpt">
+        <div class="stat-model">GPT-5.4</div>
+        <div class="stat-val">534.2</div>
+        <div class="stat-sub">composite avg · 10 trials</div>
+        <div class="stat-delta d-pos">+34.2 vs start</div>
+      </div>
+      <div class="stat-card s-gemini">
+        <div class="stat-model">Gemini 3.1 Pro</div>
+        <div class="stat-val">511.3</div>
+        <div class="stat-sub">composite avg · 10 trials</div>
+        <div class="stat-delta d-pos">+11.3 vs start</div>
+      </div>
+      <div class="stat-card s-opus">
+        <div class="stat-model">Claude Opus 4.6</div>
+        <div class="stat-val">501.7</div>
+        <div class="stat-sub">composite avg · 10 trials</div>
+        <div class="stat-delta d-neu">+1.7 vs start</div>
+      </div>
+      <div class="stat-card s-grok">
+        <div class="stat-model">Grok 4.1 Fast</div>
+        <div class="stat-val">452.8</div>
+        <div class="stat-sub">composite avg · 10 trials</div>
+        <div class="stat-delta d-neg">&minus;47.2 vs start</div>
+      </div>
+    </div>
+
+    <div class="fig">
+      <img src="/figures/composite_scores.png" alt="Bar chart of composite scores: GPT-5.4 534.2, Gemini 511.3, Opus 501.7, Grok 452.8">
+      <p class="fig-cap">
+        Composite average scores across all 10 trials. The dashed line marks the 500-chip starting
+        balance. Above it is net profitable.
+      </p>
+    </div>
+
+    <p>
+      The more interesting story is in the per-condition breakdown. GPT-5.4 dominated the even deal
+      with a 696 average. That's a huge edge when nobody has extra information at deal time, and
+      it also won its own advantaged trial (629). The other models only posted strong numbers when
+      they had the favorable starting hand: Opus peaked at 596, Gemini at 647.
+    </p>
+
+    <p>
+      Put differently: GPT made money regardless of its starting hand.
+    </p>
+
+    <div class="fig">
+      <img src="/figures/per_distribution_scores.png" alt="Per-distribution scores by deal condition and model">
+      <p class="fig-cap">
+        Scores broken down by card distribution. In each "Advantaged" condition the same skewed deck is
+        used but models rotate seats. The advantaged model starts with the strongest hand signal.
+        Individual dots show each pass; bars show the two-pass average.
+      </p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Condition</th>
+            <th><span class="chip c-gpt">GPT-5.4</span></th>
+            <th><span class="chip c-gemini">Gemini 3.1</span></th>
+            <th><span class="chip c-opus">Opus 4.6</span></th>
+            <th><span class="chip c-grok">Grok 4.1</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="mono dim">Even Deal</td>
+            <td class="hi">696</td>
+            <td>476</td>
+            <td>481</td>
+            <td class="neg">348</td>
+          </tr>
+          <tr>
+            <td class="mono dim">Opus ADV</td>
+            <td class="neg">413</td>
+            <td>516</td>
+            <td class="hi">596</td>
+            <td>476</td>
+          </tr>
+          <tr>
+            <td class="mono dim">Gemini ADV</td>
+            <td>455</td>
+            <td class="hi">647</td>
+            <td>442</td>
+            <td>457</td>
+          </tr>
+          <tr>
+            <td class="mono dim">GPT ADV</td>
+            <td class="hi">629</td>
+            <td>446</td>
+            <td>478</td>
+            <td>448</td>
+          </tr>
+          <tr>
+            <td class="mono dim">Grok ADV</td>
+            <td>478</td>
+            <td>473</td>
+            <td>513</td>
+            <td class="hi">536</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr class="tfoot-row">
+            <td>Composite avg</td>
+            <td class="pos">534.2</td>
+            <td>511.3</td>
+            <td>501.7</td>
+            <td class="neg">452.8</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <p style="font-size:0.85rem; color: var(--text-muted); margin-top: -0.5rem; font-style: italic;">
+      Per-condition values are averages of the two passes. Composite is the unweighted average of all 10
+      trials.
+    </p>
+  </div>
+</section>
+
+<!-- ══ KEY FINDINGS ══════════════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <span class="label">Trajectory Analysis</span>
+    <h2>Interesting Findings</h2>
+
+    <p>
+      Full agent trajectories are available on
+      <a href="https://github.com/koji0701/figgie-benchmark" target="_blank" rel="noopener">GitHub</a>, including
+      chain-of-thought reasoning at every step. I went through all 10 games. 
+    </p>
+
+    <h3>Finding 01: GPT scored 728 while holding zero goal-suit cards</h3>
+    <p>
+      In R3-a, <span class="chip c-gpt">GPT-5.4</span> posted 728, the highest single score in the
+      entire benchmark, while holding zero goal-suit cards at round end. It just market-made the
+      whole game. Buy low, sell high, hedge uncertainty. Never committed to a thesis about which
+      suit was the goal, and won without ever being right about it.
+    </p>
+
+    <blockquote>
+      "Grok has shown extreme willingness to pay up for spades, reaching 22 and then even 25. Even if
+      spades are the goal suit, that price is likely above fair value unless the majority bonus is huge
+      and certain. With 2 spades left, the best move is to advertise more supply just below the recent
+      frenzy and try to capture another overpriced sale."
+      <cite>GPT-5.4 reasoning, R3-a Turn 11</cite>
+    </blockquote>
+
+    <p>
+      GPT calculated the fair price, including the bonus for having the correct suit, and spotted that Grok was overpaying. 
+    </p>
+
+    <div class="fig">
+      <img src="/figures/gpt_trajectory.png" alt="GPT-5.4 reasoning trace, R3-a Turn 11">
+      <p class="fig-cap">
+        GPT-5.4's reasoning trace at Turn 11 of R3-a. It's advertising sell-side supply into
+        Grok's demand rather than chasing goal-suit cards itself.
+      </p>
+    </div>
+
+    <h3>Finding 02: Zero deception across all 10 trials</h3>
+    <p>
+      Not a single model bluffed, bid on a suit it didn't want, or tried to mislead opponents.
+      Not once across 10 full games. Human Figgie players do this, as it can lead other players astray. 
+    </p>
+    <p>
+      Every model played honestly, which is interesting as it signals models will not resort to deception for profit. 
+    </p>
+  </div>
+</section>
+
+<!-- ══ WHY FIGGIE ════════════════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <span class="label">Task Design Rationale</span>
+    <h2>Why Figgie Tests the Right Things</h2>
+
+    <p>
+      Figgie hits a lot of things at once: game theory, Bayesian updating, EV calculation under
+      imperfect information, rational decision-making under uncertainty. The reward signal is just the chip count at the end. The only downside (as with all card games) is noise from the original deal, and more trials (money) would be necessary for conclusive findings. 
+    </p>
+
+    <p>
+      But the real reason I picked it is that Figgie is basically a toy version of quantitative
+      trading. Each game mechanic maps onto something real:
+    </p>
+
+    <ul class="rationale">
+      <li>
+        <span class="r-suit r-spade">♠</span>
+        <div class="r-body">
+          <span class="r-game">Infer the hidden goal suit from observed market activity</span>
+          <span class="r-trading">&rarr; Estimate fair value from order flow</span>
+        </div>
+      </li>
+      <li>
+        <span class="r-suit r-diamond">♦</span>
+        <div class="r-body">
+          <span class="r-game">Balance inventory across correlated suits under uncertainty</span>
+          <span class="r-trading">&rarr; Delta-hedging, portfolio exposure limits</span>
+        </div>
+      </li>
+      <li>
+        <span class="r-suit r-club">♣</span>
+        <div class="r-body">
+          <span class="r-game">Size bids relative to edge and information confidence</span>
+          <span class="r-trading">&rarr; Spread width and order size under information asymmetry</span>
+        </div>
+      </li>
+      <li>
+        <span class="r-suit r-heart">♥</span>
+        <div class="r-body">
+          <span class="r-game">Update pricing in real time as new trades reveal information</span>
+          <span class="r-trading">&rarr; Re-estimating implied vol or mean-reversion speed as data arrives</span>
+        </div>
+      </li>
+    </ul>
+
+    <p>
+      Eventually, benchmarks like this could measure how well LLMs support quant traders on things
+      like tuning execution parameters, adjusting risk limits, or calibrating pricing models.
+    </p>
+
+
+  </div>
+</section>
+
+<!-- ══ TOKEN USAGE ═══════════════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <span class="label">Cost &amp; Efficiency</span>
+    <h2>Token Usage</h2>
+
+    <div class="fig">
+      <img src="/figures/token_usage.png" alt="Token usage across all 10 rounds by model">
+      <p class="fig-cap">
+        Token usage across all 10 rounds. Grok generated roughly 3&ndash;5&times; more output tokens
+        than GPT, despite posting the worst average score. GPT was the most token-efficient relative to
+        performance.
+      </p>
+    </div>
+
+
+  </div>
+</section>
+
+<!-- ══ TRAINING SIGNAL ═══════════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <span class="label">Implications</span>
+    <h2>Training Signal Value</h2>
+
+    <p>
+      If you dropped this into a training pipeline, it gives you a clean numerical reward for game
+      theory, Bayesian updating, and rational action selection, all without needing a human judge.
+      Just chip count. Hard to game with surface-level heuristics.
+    </p>
+
+    <p>
+      Specifically, Figgie-style training would push on: deceptive play / strategic signaling, belief revision under noise, parameter estimation from noisy signals, and dynamic position sizing &amp; exit timing.
+    </p>
+  </div>
+</section>
+
+<!-- ══ FOOTER ════════════════════════════════════════════════ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-suits" aria-hidden="true">♠ ♦ ♣ ♥</div>
+    <p class="footer-text">
+      Koji Wong &nbsp;&middot;&nbsp; kojirwong.dev &nbsp;&middot;&nbsp; April 2026
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
