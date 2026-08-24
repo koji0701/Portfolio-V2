@@ -61,7 +61,7 @@ const Hero = () => {
           <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 font-light tracking-wide max-w-3xl mx-auto leading-relaxed font-typewriter">
             cs + math @ washington university in st. louis
             <br />
-            incoming swe @ capital one
+            sde intern @ amazon health
           </p>
         </div>
          
