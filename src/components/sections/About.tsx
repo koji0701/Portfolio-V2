@@ -39,12 +39,12 @@ const About = () => {
                   
                   <div className="space-y-6 text-gray-300 leading-relaxed font-typewriter text-sm tracking-wide">
                     <p>
-                      I'm a rising junior at Washington University in St. Louis studying CS + Math. Currently, I'm on a gap semester working on population health @ Amazon in SF. I'm broadly interested in startups & deeptech.
+                      I'm a rising junior at Washington University in St. Louis studying CS + Math, currently on a gap semester in SF working on population health @ Amazon. I've recently been interested in simulation environments, inference, and startups. 
                     </p>
                     <p>
                       
                     </p>
-                    <div className="space-y-2">
+                    {/* <div className="space-y-2">
                       <p>Previously, I've:</p>
                       <ul className="space-y-2 pl-4">
                         <li>
@@ -63,7 +63,7 @@ const About = () => {
                           - Spent a semester as a swe @ the world's smallest sport (biotech, iykyk)
                         </li>
                       </ul>
-                    </div>
+                    </div> */}
                   </div>
                   
                   {/* Resume Button - temporarily commented out
