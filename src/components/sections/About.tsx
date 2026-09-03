@@ -39,10 +39,17 @@ const About = () => {
                   
                   <div className="space-y-6 text-gray-300 leading-relaxed font-typewriter text-sm tracking-wide">
                     <p>
-                      I'm a rising junior at Washington University in St. Louis studying CS + Math, currently on a gap semester in SF working on population health @ Amazon. Recently, I've been interested in simulation environments, inference, and startups. 
+                      I study CS + Math at WashU. Currently, I'm interested in simulation environments, inference, and startups.
+
+
+
                     </p>
                     <p>
-                      
+                      I'm on a gap semester in SF working on population health at Amazon.
+
+                    </p>
+                    <p>
+                        I previously built the redactions product at Code Four (YC X25). Before that, I researched simulation environments for autonomous vehicles at WashU and built the open-source rules engine behind access.nyc.gov.
                     </p>
                     {/* <div className="space-y-2">
                       <p>Previously, I've:</p>
