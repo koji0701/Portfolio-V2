@@ -39,7 +39,7 @@ const About = () => {
                   
                   <div className="space-y-6 text-gray-300 leading-relaxed font-typewriter text-sm tracking-wide">
                     <p>
-                      I study CS + Math at WashU. Currently, I'm interested in simulation environments, inference, and startups.
+                      I'm a rising junior at WashU. Currently, I'm interested in simulation environments, inference, and startups.
 
 
 
