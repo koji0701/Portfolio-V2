@@ -49,7 +49,7 @@ const About = () => {
 
                     </p>
                     <p>
-                        I previously built the redactions product at Code Four (YC X25). Before that, I researched simulation environments for autonomous vehicles at WashU and built the open-source rules engine behind access.nyc.gov.
+                        I previously built the redactions product at Code Four (YC X25). Before that, I researched simulation environments for autonomous vehicles at WashU and worked on the open-source rules engine behind access.nyc.gov.
                     </p>
                     {/* <div className="space-y-2">
                       <p>Previously, I've:</p>
